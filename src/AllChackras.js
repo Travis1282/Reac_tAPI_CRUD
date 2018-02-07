@@ -2,17 +2,18 @@ import React, { Component } from 'react'
 
 
 
-class AllFruits extends Component {
+class AllChackras extends Component {
 
   render(){
 
-    const allFruits = this.props.allFruits.map((fruit, i) => {
-      return <li key={i}  onClick={this.props.handleEdit}>{fruit.name} <button id={fruit.id} onClick={this.props.deleteFruit}>delete</button></li>
+    const allChackras = this.props.allChackras.map((chackra, i) => {
+      return <li key={i} > {chackra.name} 
+              <div onClick={this.props.handleEdit}>{chackra.name}</div></li>
     })
-    console.log(this.props, allFruits)
+    console.log(this.props, allChackras)
     return (
         <ul>
-          {allFruits}
+          {allChackras}
         </ul>
       )
   }
@@ -21,4 +22,4 @@ class AllFruits extends Component {
 }
 
 
-export default AllFruits;
+export default AllChackras;

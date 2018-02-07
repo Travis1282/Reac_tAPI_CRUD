@@ -2,7 +2,7 @@ import React, { Component }  from 'react';
 
 
 
-class CreateFruit extends Component {
+class CreateChackra extends Component {
   constructor(){
     super()
 
@@ -19,7 +19,7 @@ class CreateFruit extends Component {
   submitForm = (e) => {
     e.preventDefault();
     //
-    this.props.createFruit(this.state)
+    this.props.createChackra(this.state)
   }
   render(){
 
@@ -28,11 +28,12 @@ class CreateFruit extends Component {
           <input name="name" placeholder="name" onChange={this.handleInput}/>
           <input name="color" placeholder="color" onChange={this.handleInput}/>
           <input name="amount" placeholder="amount" onChange={this.handleInput}/>
-          <button onClick={this.submitForm}>Add Fruit</button>
+          <button onClick={this.submitForm}>Add Chackra</button>
         </form>
 
       )
   }
 }
 
-export default CreateFruit;
+export default CreateChackra;
+//          <button id={chackra.id} onClick={this.props.deleteChackra}>Delete This Chackra</button>
