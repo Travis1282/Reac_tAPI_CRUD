@@ -1,107 +1,103 @@
 import React, { Component } from 'react';
 import './App.css';
 import request from 'superagent';
-import AllChackras from './AllChackras';
-// import LogChackra from './LogChackra'
-// import EditChackra from './EditChackra'
+import AllChakras from './AllChakras';
+import LogChakra from './LogChakra'
+import EditChakra from './EditChakra'
 
-const chackraDB = "localhost:9292/chakras"
+const chakraDB = "http://localhost:9292/chakras"
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
 
     this.state = {
-      allChackras: [],
-      editedChackras: ''
+      allChakras: [],
+      editedChakra: ''
     }
   }
   componentDidMount() {
     request
-      .get(chackraDB)
+      .get(chakraDB)
       .end((err, res) => {
           console.log(err, res)
-//           const parsedChackras = JSON.parse(res.text);
-//           this.setState({allChackras: [...parsedChackras]})
-// //           // JSON.parse to get your object out of res.text
+          const parsedChakras = JSON.parse(res.text);
+          this.setState({allChakras: [...parsedChakras]})
+//           // JSON.parse to get your object out of res.text
       })
 
   }
-//   logChackra = (formData) => {
-//     console.log(formData, ' formData')
-//     request
-//       .post(chackraDB)
-//       .send(formData)
-//       .set('accept', 'json')
-//       .end((err, logChackra) => {
-//         console.log(logChackra, ' this should be our response from our post route')
-//         const parsedchackra = JSON.parse(logChackra.text)
+  log_chakra = (formData) => {
+    console.log(formData, ' formData')
+    request
+      .post(chakraDB)
+      .send(formData)
+      .set('accept', 'json')
+      .end((err, log_chakra) => {
+        console.log(log_chakra, ' this should be our response from our post route')
+        const parsedchakra = JSON.parse(log_chakra.text)
 
-//         this.setState({allChackras: [parsedchackra, ...this.state.AllChackras ]});
-//       })
+        this.setState({allChakras: [parsedchakra, ...this.state.AllChakras ]});
+      })
 
-//   }
-//   deletechackra = (e) => {
+  }
+  deleteChakra = (e) => {
 
-//     console.log(e.currentTarget.id, ' id of chackra')
-//     const id = e.currentTarget.id
-//     console.log(id, ' id')
-//     request
-//       .delete(chackraDB + id)
-//       .end((err, deletedchackra) => {
-//         console.log(deletedchackra)
-//         if(deletedchackra){
-//           const filterArray =  this.state.allChackras.filter(chackra => chackra.id != id  )
-//           this.setState({allChackras: filterArray})
-//         }
-//       })
-//   }
-//   handleEdit = (e) => {
-//     console.log(e.currentTarget.children[0].id)
-//     const id = e.currentTarget.children[0].id
-
-//     const chackraToEdit = this.state.allChackras.forEach((chackra) => {
-//       if(chackra.id === parseInt(id)){
-//         this.setState({editedChackras: chackra})
-//         return;
-//       }
-//     })
-
+    console.log(e.currentTarget.id, ' id of chakra')
+    const id = e.currentTarget.id
+    console.log(id, ' id')
+    request
+      .delete(chakraDB + id)
+      .end((err, deletedchakra) => {
+        console.log(deletedchakra)
+        if(deletedchakra){
+          const filterArray =  this.state.allChakras.filter(chakra => chakra.id != id  )
+          this.setState({allChakras: filterArray})
+        }
+      })
+  }
+  handleEdit = (e) => {
+    console.log(e.currentTarget.children[0].id)
+    const id = e.currentTarget.children[0].id
+    const chakraToEdit = this.state.allChakras.forEach((chakra) => {
+      if(chakra.id === parseInt(id)){
+        this.setState({editedChakra: chakra})
+        return;
+      }
+    })
 
 
-//   }
-//   editCall = (editedchackra) => {
-//     console.log(editedchackra)
-//     request
-//       .put(chackraDB + editedchackra.id)
-//       .send(editedchackra)
-//       .end((err, chackra) => {
-//         console.log(chackra)
-//         const parsedchackra = JSON.parse(chackra.text)
 
-//         this.state.allChackras.forEach((chackra, i) => {
-//           if(chackra.id === parsedchackra.id){
-//           const state = this.state;
-//           state.allChackras.splice(i, 1, parsedchackra)
-//           this.setState(state)
+  }
+  editChackra = (edited_chakra) => {
+    console.log(edited_chakra)
+    request
+      .put(chakraDB + edited_chakra.id)
+      .send(edited_chakra)
+      .end((err, chakra) => {
+        console.log(chakra)
+        const parsedchakra = JSON.parse(chakra.text)
 
+        this.state.allChakras.forEach((chakra, i) => {
+          if(chakra.id === parsedchakra.id){
+          const state = this.state;
+          state.allChakras.splice(i, 1, parsedchakra)
+          this.setState(state)
+          }
+        })
 
-//           }
-//         })
-
-//       })
-//   }
-
-
-        // <logChackra logChackra={this.logChackra}/>
-        // {this.state.editedchackra != '' ? <EditChackra  editedchackra={this.state.editedChackras} deletechackra={this.deletechackra} editCall={this.editCall}/> : null}
-
+      })
+  }
+     
   render() {
 
 
     return (
       <div className="App">
-        <AllChackras allChackras={this.state.allChackras}  handleEdit={this.handleEdit}/>
+        <AllChakras allChakras={this.state.allChakras}  handleEdit={this.handleEdit}/>
+          <LogChakra log_chakra={this.log_chakra}/>
+         {this.state.editedchakra != '' ? <EditChakra  editedChakra={this.state.editedChakra} editChakra={this.editChakra} deletechakra={this.deletechakra} /> : null}
+
       </div>
     );
   }

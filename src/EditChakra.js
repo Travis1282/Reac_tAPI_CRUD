@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 
 
-class EditChackra extends Component {
+class EditChakra extends Component {
     constructor(props){
     super(props)
 
     this.state = {
-      //id: this.props.editedChackra.id,
-      // name: this.props.editedChackra.name,
-      // color: this.props.editedChackra.color,
-      // size: this.props.editedChackra.size
+      id: this.props.edited_chakra.id,
+      name: this.props.edited_chakra.name,
+      color: this.props.edited_chakra.color,
+      size: this.props.edited_chakra.size
     }
   }
   handleInput = (e) => {
@@ -18,7 +18,7 @@ class EditChackra extends Component {
   }
   submitForm = (e) => {
     e.preventDefault();
-    this.props.editCall(this.state)
+    this.props.editChackra(this.state)
   }
   render(){
     return (
@@ -26,7 +26,7 @@ class EditChackra extends Component {
           Name: <input name="name" value={this.state.name} onChange={this.handleInput}/>
           Color:  <input name="color" value={this.state.color}  onChange={this.handleInput}/>
           Size:<input name="size" value={this.state.amount}  onChange={this.handleInput}/>
-          <button onClick={this.submitForm}>Add Chackra</button>
+          <button onClick={this.submitForm}>Add Chakra</button>
         </form>
 
       )
@@ -34,4 +34,4 @@ class EditChackra extends Component {
 }
 
 
-export default EditChackra;
+export default EditChakra;

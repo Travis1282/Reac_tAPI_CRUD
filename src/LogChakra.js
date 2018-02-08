@@ -2,7 +2,7 @@ import React, { Component }  from 'react';
 
 
 
-class CreateChackra extends Component {
+class CreateChakra extends Component {
   constructor(){
     super()
 
@@ -19,7 +19,7 @@ class CreateChackra extends Component {
   submitForm = (e) => {
     e.preventDefault();
     //
-    this.props.createChackra(this.state)
+    this.props.createChakra(this.state)
   }
   render(){
 
@@ -28,12 +28,12 @@ class CreateChackra extends Component {
           <input name="name" placeholder="name" onChange={this.handleInput}/>
           <input name="color" placeholder="color" onChange={this.handleInput}/>
           <input name="amount" placeholder="amount" onChange={this.handleInput}/>
-          <button onClick={this.submitForm}>Add Chackra</button>
+          <button onClick={this.submitForm}>Add Chakra</button>
         </form>
 
       )
   }
 }
 
-export default CreateChackra;
-//          <button id={chackra.id} onClick={this.props.deleteChackra}>Delete This Chackra</button>
+export default CreateChakra;
+//          <button id={chakra.id} onClick={this.props.deleteChakra}>Delete This Chakra</button>
